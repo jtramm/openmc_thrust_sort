@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.8.2)
 #list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
 
 project(openmc_thrust_sort
-    DESCRIPTION "My project description here"
+  DESCRIPTION "Sort EventQueueItem arrays in OpenMC on NVIDIA devices with Thrust"
     LANGUAGES CXX CUDA)
 
 # Don't do this. Set your build type explicitly, once; and then it's
@@ -28,8 +28,8 @@ include(FindCUDA)
 #string(REPLACE ";" " " CUDA_ARCH_FLAGS_STR "${CUDA_ARCH_FLAGS}")
 #set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} ${CUDA_ARCH_FLAGS_STR}")
 
-cuda_select_nvcc_arch_flags(ARCH_FLAGS 8.0)
-list(APPEND CUDA_NVCC_FLAGS ${ARCH_FLAGS})
+#cuda_select_nvcc_arch_flags(ARCH_FLAGS 8.0)
+#list(APPEND CUDA_NVCC_FLAGS ${ARCH_FLAGS})
 
 # The above may produce something like:
 #

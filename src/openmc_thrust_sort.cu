@@ -1,5 +1,7 @@
 #include<thrust/sort.h>
 
+namespace openmc{
+
 struct EventQueueItem{
   int idx;         //!< particle index in event-based particle buffer
   //int material;    //!< material that particle is in
@@ -12,12 +14,14 @@ struct EventQueueItem{
   // like to be able to just sort by general material type, regardless of densities.
   // A more general material type ID may be added in the future, in which case we
   // can update the material field of this struct to contain the more general id.
+  __host__ __device__
   bool operator<(const EventQueueItem& rhs) const
   {
     return E < rhs.E;
   }
 
   // This is needed by the implementation of parallel quicksort
+  __host__ __device__
   bool operator>(const EventQueueItem& rhs) const
   {
     return E > rhs.E;
@@ -26,5 +30,7 @@ struct EventQueueItem{
 
 void device_sort_event_queue_item(EventQueueItem* begin, EventQueueItem* end)
 {
-  thrust::sort(begin, end);
+  thrust::sort(thrust::device, begin, end);
+}
+
 }
